@@ -12,6 +12,12 @@ public class StarfishNumber : AbstractStarfishComponent
     [NotNull]
     public IStarfishComponent RightElement { get; set; }
 
+    public StarfishNumber(IStarfishComponent leftElement, IStarfishComponent rightElement) : 
+        this(leftElement, rightElement, null, false)
+    {
+        
+    }
+
 
     public StarfishNumber(IStarfishComponent leftElement, IStarfishComponent rightElement, StarfishNumber? parent, bool isLeftSideOfParent)
     {
@@ -21,6 +27,10 @@ public class StarfishNumber : AbstractStarfishComponent
         IsLeftSideOfParent = isLeftSideOfParent;
         LeftElement = leftElement;
         RightElement = rightElement;
+        LeftElement.Parent = this;
+        LeftElement.IsLeftSideOfParent = true;
+        RightElement.Parent = this;
+        RightElement.IsLeftSideOfParent = false;
     }
 
     public override bool IsRegularNumber

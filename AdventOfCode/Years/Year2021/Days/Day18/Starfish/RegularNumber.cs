@@ -3,15 +3,11 @@ using System.Data.SqlTypes;
 
 namespace AdventOfCode.Years.Year2021.Days.Day18.Starfish;
 
-public class RegularNumber : IStarfishComponent
+public class RegularNumber : AbstractStarfishComponent
 {
 
     public const int SPLIT_DIVISOR = 2;
-
-    public StarfishNumber Parent { get; set; }
-    public bool IsLeftSideOfParent { get; set; }
-
-    public bool IsRegularNumber {
+    public override bool IsRegularNumber {
         get { return true; }
     }
 
@@ -45,10 +41,8 @@ public class RegularNumber : IStarfishComponent
         if (remainder >= SPLIT_DIVISOR / 2)
             roundUp++;
 
-        return new StarfishNumber(RegularNumber.GetCompnent(roundDown), RegularNumber.GetCompnent(roundUp));
+        return new StarfishNumber(new RegularNumber(roundDown), new RegularNumber(roundUp));
     }
-    
-    
 
     public int GetLeftMostNumber()
     {
@@ -60,7 +54,7 @@ public class RegularNumber : IStarfishComponent
         return Number;
     }
 
-    public int GetMagnitude()
+    public override int GetMagnitude()
     {
         return Number;
     }
