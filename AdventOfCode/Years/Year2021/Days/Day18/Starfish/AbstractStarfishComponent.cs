@@ -7,6 +7,25 @@ public abstract class AbstractStarfishComponent : IStarfishComponent
     public abstract bool IsRegularNumber { get; }
     public abstract int GetMagnitude();
 
+
+    /// <summary>
+    /// Split the number if needed
+    /// Traverses the tree, left side first, until a split is needed. Returns true if a split is performed, false if not
+    /// </summary>
+    /// <returns>true if a split was performed, false if not</returns>
+    public abstract bool Split();
+
+    /// <summary>
+    /// Explodes the number, if necessary.
+    /// Recurses down the tree, left side first, until a number to explode is found
+    /// Regular Numbers can't explode, so they always return false;
+    /// </summary>
+    /// <returns>true if an explode is performed, false if not</returns>
+    public abstract bool Explode();
+
+    public abstract RegularNumber GetChildLeftMostNumber();
+    public abstract RegularNumber GetChildRightMostNumber();
+
     public void ReplaceSelfWith(IStarfishComponent replacement)
     {
         if (Parent == null)

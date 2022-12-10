@@ -3,7 +3,7 @@ using System.Data.SqlTypes;
 
 namespace AdventOfCode.Years.Year2021.Days.Day18.Starfish;
 
-public class RegularNumber : AbstractStarfishComponent
+public sealed class RegularNumber : AbstractStarfishComponent
 {
 
     public const int SPLIT_DIVISOR = 2;
@@ -19,29 +19,26 @@ public class RegularNumber : AbstractStarfishComponent
     }
 
     /// <summary>
-    /// Gets the starfish component for the given regular number
-    /// Splits the component and returns component pieces if necessary
+    /// Splits the number
     /// </summary>
-    /// <param name="number"></param>
     /// <returns></returns>
-    public static IStarfishComponent GetCompnent(int number)
+    public override bool Split()
     {
-        if (number < 0)
-            throw new ArgumentOutOfRangeException(nameof(number));
-
-        if (number < 10)
-            return new RegularNumber(number);
+        if (Number < 10)
+            return false;
 
         // Split the number
         
-        int roundDown = number / SPLIT_DIVISOR;
-        int remainder = number % SPLIT_DIVISOR;
+        int roundDown = Number / SPLIT_DIVISOR;
+        int remainder = Number % SPLIT_DIVISOR;
 
         int roundUp = roundDown;
         if (remainder >= SPLIT_DIVISOR / 2)
             roundUp++;
-
-        return new StarfishNumber(new RegularNumber(roundDown), new RegularNumber(roundUp));
+        
+        var result = new StarfishNumber(new RegularNumber(roundDown), new RegularNumber(roundUp));
+        ReplaceSelfWith(result);
+        return true;
     }
 
     public int GetLeftMostNumber()
@@ -57,5 +54,26 @@ public class RegularNumber : AbstractStarfishComponent
     public override int GetMagnitude()
     {
         return Number;
+    }
+
+    /// <summary>
+    /// Explodes the number, if necessary.
+    /// Recurses down the tree, left side first, until a number to explode is found
+    /// Regular Numbers can't explode, so they always return false;
+    /// </summary>
+    /// <returns>true if an explode is performed, false if not</returns>
+    public override bool Explode()
+    {
+        return false;
+    }
+
+    public override RegularNumber GetChildLeftMostNumber()
+    {
+        return this;
+    }
+
+    public override RegularNumber GetChildRightMostNumber()
+    {
+        return this;
     }
 }
