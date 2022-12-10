@@ -1,5 +1,5 @@
-﻿using AdventOfCode.Years.Year2022.Days.Day09;
+﻿using AdventOfCode.Years.Year2021.Days.Day18;
 
-var today = new Day09();
+var today = new Main();
 
 today.Run();
