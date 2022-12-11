@@ -1,9 +1,6 @@
-﻿using System.ComponentModel;
-using System.Data.SqlTypes;
+﻿namespace AdventOfCode.Years.Year2021.Days.Day18.Snailfish;
 
-namespace AdventOfCode.Years.Year2021.Days.Day18.Starfish;
-
-public sealed class RegularNumber : AbstractStarfishComponent
+public sealed class RegularNumber : AbstractSnailfishComponent
 {
 
     public const int SPLIT_DIVISOR = 2;
@@ -16,6 +13,11 @@ public sealed class RegularNumber : AbstractStarfishComponent
     public RegularNumber(int number)
     {
         Number = number;
+    }
+
+    protected override string GetStringRepresentation()
+    {
+        return Number.ToString();
     }
 
     /// <summary>
@@ -36,7 +38,7 @@ public sealed class RegularNumber : AbstractStarfishComponent
         if (remainder >= SPLIT_DIVISOR / 2)
             roundUp++;
         
-        var result = new StarfishNumber(new RegularNumber(roundDown), new RegularNumber(roundUp));
+        var result = new SnailfishNumber(new RegularNumber(roundDown), new RegularNumber(roundUp));
         ReplaceSelfWith(result);
         return true;
     }

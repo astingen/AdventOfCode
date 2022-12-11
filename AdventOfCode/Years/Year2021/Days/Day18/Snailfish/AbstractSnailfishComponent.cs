@@ -1,8 +1,8 @@
-﻿namespace AdventOfCode.Years.Year2021.Days.Day18.Starfish;
+﻿namespace AdventOfCode.Years.Year2021.Days.Day18.Snailfish;
 
-public abstract class AbstractStarfishComponent : IStarfishComponent
+public abstract class AbstractSnailfishComponent : ISnailfishComponent
 {
-    public StarfishNumber? Parent { get; set; }
+    public SnailfishNumber? Parent { get; set; }
     public bool IsLeftSideOfParent { get; set; }
     public abstract bool IsRegularNumber { get; }
     public abstract int GetMagnitude();
@@ -26,7 +26,16 @@ public abstract class AbstractStarfishComponent : IStarfishComponent
     public abstract RegularNumber GetChildLeftMostNumber();
     public abstract RegularNumber GetChildRightMostNumber();
 
-    public void ReplaceSelfWith(IStarfishComponent replacement)
+    protected abstract string GetStringRepresentation();
+
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
+    public override string ToString()
+    {
+        return GetStringRepresentation();
+    }
+
+    public void ReplaceSelfWith(ISnailfishComponent replacement)
     {
         if (Parent == null)
             throw new InvalidOperationException("Can't Replace Root Number");

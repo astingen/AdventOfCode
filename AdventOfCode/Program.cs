@@ -1,4 +1,6 @@
-﻿using MainCurrent = AdventOfCode.Years.Year2022.Days.Day10.Main;
+﻿using AdventOfCode.Years.Year2021.Days.Day18;
+using AdventOfCode.Years.Year2021.Days.Day18.Snailfish;
 
 // 2022-12-10 Puzzle
-MainCurrent.Run();
+var today = new Main();
+today.Run();
