@@ -30,4 +30,11 @@ public interface ISnailfishComponent
     RegularNumber GetChildRightMostNumber();
 
     string ToString();
+
+    /// <summary>
+    /// Make a deep clone of the number
+    /// </summary>
+    /// <returns></returns>
+    ISnailfishComponent Clone();
+
 }

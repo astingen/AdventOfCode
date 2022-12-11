@@ -204,4 +204,11 @@ public sealed class SnailfishNumber : AbstractSnailfishComponent
         remainder = remainder.Substring(1);
         return number;
     }
+
+    public override ISnailfishComponent Clone()
+    {
+        var leftClone = LeftElement.Clone();
+        var rightClone = RightElement.Clone();
+        return new SnailfishNumber(leftClone, rightClone);
+    }
 }

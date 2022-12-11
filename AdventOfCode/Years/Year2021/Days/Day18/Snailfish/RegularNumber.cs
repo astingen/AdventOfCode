@@ -78,4 +78,9 @@ public sealed class RegularNumber : AbstractSnailfishComponent
     {
         return this;
     }
+
+    public override ISnailfishComponent Clone()
+    {
+        return new RegularNumber(Number);
+    }
 }

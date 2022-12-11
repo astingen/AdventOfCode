@@ -3,12 +3,8 @@
 public static class SnailfishUtils
 {
     public static SnailfishNumber Add(SnailfishNumber x, SnailfishNumber y)
-    { 
-        var result = new SnailfishNumber(x, y, null, false);
-        x.Parent = result;
-        x.IsLeftSideOfParent = true;
-        y.Parent = result;
-        y.IsLeftSideOfParent = false;
+    {
+        var result = new SnailfishNumber(x.Clone(), y.Clone());
         Reduce(result);
         return result;
     }
