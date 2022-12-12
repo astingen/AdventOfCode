@@ -1,6 +1,7 @@
-﻿using AdventOfCode.Years.Year2021.Days.Day18;
-using AdventOfCode.Years.Year2021.Days.Day18.Snailfish;
+﻿using System.Diagnostics.CodeAnalysis;
+using AdventOfCode.Years.Year2022.Days.Day11;
 
-// 2022-12-10 Puzzle
-var today = new Main();
-today.Run();
+//const int ROUNDS = 20;
+
+Main.Run();
+return;
