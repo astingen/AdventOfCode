@@ -1,6 +1,4 @@
-﻿using BigMath;
-
-namespace AdventOfCode.Years.Year2022.Days.Day11;
+﻿namespace AdventOfCode.Years.Year2022.Days.Day11;
 
 public class Monkey
 {
@@ -9,9 +7,9 @@ public class Monkey
     private readonly int m_MonkeyNumber;
     private readonly Queue<Item> m_Items;
 
-    private readonly Func<Int256, Int256> m_WorryOperation;
+    private readonly Func<long, long> m_WorryOperation;
 
-    private readonly Func<Int256, Int256> m_BoredOperation;
+    private readonly Func<long, long> m_BoredOperation;
 
     private readonly int m_TestModulo;
 
@@ -42,7 +40,7 @@ public class Monkey
         set;
     }
 
-    public Monkey(int monkeyNumber, Main main, Func<Int256, Int256> worryOperation, int divisibleBy, int destinationIfTrue,
+    public Monkey(int monkeyNumber, Main main, Func<long, long> worryOperation, int divisibleBy, int destinationIfTrue,
                   int destinationIfFalse)
     {
         m_MonkeyNumber = monkeyNumber;
@@ -77,7 +75,7 @@ public class Monkey
         }
     }
 
-    private static bool DivisibleByTest(Int256 input, int divisor)
+    private static bool DivisibleByTest(long input, int divisor)
     {
         return input % divisor == 0;
     }
